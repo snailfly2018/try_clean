@@ -9,7 +9,7 @@ part of 'numbertrivia.dart';
 _$_NumberTrivia _$$_NumberTriviaFromJson(Map<String, dynamic> json) =>
     _$_NumberTrivia(
       text: json['text'] as String,
-      number: (json['number'] as num).toInt(),
+      number: json['number'] as int,
     );
 
 Map<String, dynamic> _$$_NumberTriviaToJson(_$_NumberTrivia instance) =>
