@@ -54,7 +54,7 @@ void main() {
   group('getConcreteNumberTrivia', () {
     // DATA FOR THE MOCKS AND ASSERTIONS
     // We'll use these three variables throughout all the tests
-    final tNumber = 1;
+    const tNumber = 1;
     final tNumberTriviaModel =
         NumberTrivia(number: tNumber, text: 'test trivia');
     final NumberTrivia tNumberTrivia = tNumberTriviaModel;
