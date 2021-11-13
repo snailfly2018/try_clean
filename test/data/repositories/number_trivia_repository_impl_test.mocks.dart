@@ -78,12 +78,6 @@ class MockNumberTriviaRemoteDataSource extends _i1.Mock
                   Future<_i2.NumberTrivia>.value(_FakeNumberTrivia_0()))
           as _i4.Future<_i2.NumberTrivia>);
   @override
-  _i4.Future<_i2.NumberTrivia> getConcreteNumberTrivial(int? number) => (super
-          .noSuchMethod(Invocation.method(#getConcreteNumberTrivial, [number]),
-              returnValue:
-                  Future<_i2.NumberTrivia>.value(_FakeNumberTrivia_0()))
-      as _i4.Future<_i2.NumberTrivia>);
-  @override
   _i4.Future<_i2.NumberTrivia> getRandomNumberTrivia() => (super.noSuchMethod(
           Invocation.method(#getRandomNumberTrivia, []),
           returnValue: Future<_i2.NumberTrivia>.value(_FakeNumberTrivia_0()))

@@ -7,4 +7,5 @@ class Failure with _$Failure {
   factory Failure() = _Failure;
   factory Failure.serverFailure() = ServerFailure;
   factory Failure.cacheFailure() = CacheFailure;
+  factory Failure.inputFailure() = InvalidInputFailure;
 }

@@ -28,6 +28,10 @@ class _$FailureTearOff {
   CacheFailure cacheFailure() {
     return CacheFailure();
   }
+
+  InvalidInputFailure inputFailure() {
+    return InvalidInputFailure();
+  }
 }
 
 /// @nodoc
@@ -40,6 +44,7 @@ mixin _$Failure {
     TResult Function() $default, {
     required TResult Function() serverFailure,
     required TResult Function() cacheFailure,
+    required TResult Function() inputFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +52,7 @@ mixin _$Failure {
     TResult Function()? $default, {
     TResult Function()? serverFailure,
     TResult Function()? cacheFailure,
+    TResult Function()? inputFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,6 +60,7 @@ mixin _$Failure {
     TResult Function()? $default, {
     TResult Function()? serverFailure,
     TResult Function()? cacheFailure,
+    TResult Function()? inputFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +69,7 @@ mixin _$Failure {
     TResult Function(_Failure value) $default, {
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(CacheFailure value) cacheFailure,
+    required TResult Function(InvalidInputFailure value) inputFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +77,7 @@ mixin _$Failure {
     TResult Function(_Failure value)? $default, {
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(CacheFailure value)? cacheFailure,
+    TResult Function(InvalidInputFailure value)? inputFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,6 +85,7 @@ mixin _$Failure {
     TResult Function(_Failure value)? $default, {
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(CacheFailure value)? cacheFailure,
+    TResult Function(InvalidInputFailure value)? inputFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -137,6 +147,7 @@ class _$_Failure implements _Failure {
     TResult Function() $default, {
     required TResult Function() serverFailure,
     required TResult Function() cacheFailure,
+    required TResult Function() inputFailure,
   }) {
     return $default();
   }
@@ -147,6 +158,7 @@ class _$_Failure implements _Failure {
     TResult Function()? $default, {
     TResult Function()? serverFailure,
     TResult Function()? cacheFailure,
+    TResult Function()? inputFailure,
   }) {
     return $default?.call();
   }
@@ -157,6 +169,7 @@ class _$_Failure implements _Failure {
     TResult Function()? $default, {
     TResult Function()? serverFailure,
     TResult Function()? cacheFailure,
+    TResult Function()? inputFailure,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -171,6 +184,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Failure value) $default, {
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(CacheFailure value) cacheFailure,
+    required TResult Function(InvalidInputFailure value) inputFailure,
   }) {
     return $default(this);
   }
@@ -181,6 +195,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Failure value)? $default, {
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(CacheFailure value)? cacheFailure,
+    TResult Function(InvalidInputFailure value)? inputFailure,
   }) {
     return $default?.call(this);
   }
@@ -191,6 +206,7 @@ class _$_Failure implements _Failure {
     TResult Function(_Failure value)? $default, {
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(CacheFailure value)? cacheFailure,
+    TResult Function(InvalidInputFailure value)? inputFailure,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -247,6 +263,7 @@ class _$ServerFailure implements ServerFailure {
     TResult Function() $default, {
     required TResult Function() serverFailure,
     required TResult Function() cacheFailure,
+    required TResult Function() inputFailure,
   }) {
     return serverFailure();
   }
@@ -257,6 +274,7 @@ class _$ServerFailure implements ServerFailure {
     TResult Function()? $default, {
     TResult Function()? serverFailure,
     TResult Function()? cacheFailure,
+    TResult Function()? inputFailure,
   }) {
     return serverFailure?.call();
   }
@@ -267,6 +285,7 @@ class _$ServerFailure implements ServerFailure {
     TResult Function()? $default, {
     TResult Function()? serverFailure,
     TResult Function()? cacheFailure,
+    TResult Function()? inputFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -281,6 +300,7 @@ class _$ServerFailure implements ServerFailure {
     TResult Function(_Failure value) $default, {
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(CacheFailure value) cacheFailure,
+    required TResult Function(InvalidInputFailure value) inputFailure,
   }) {
     return serverFailure(this);
   }
@@ -291,6 +311,7 @@ class _$ServerFailure implements ServerFailure {
     TResult Function(_Failure value)? $default, {
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(CacheFailure value)? cacheFailure,
+    TResult Function(InvalidInputFailure value)? inputFailure,
   }) {
     return serverFailure?.call(this);
   }
@@ -301,6 +322,7 @@ class _$ServerFailure implements ServerFailure {
     TResult Function(_Failure value)? $default, {
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(CacheFailure value)? cacheFailure,
+    TResult Function(InvalidInputFailure value)? inputFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -357,6 +379,7 @@ class _$CacheFailure implements CacheFailure {
     TResult Function() $default, {
     required TResult Function() serverFailure,
     required TResult Function() cacheFailure,
+    required TResult Function() inputFailure,
   }) {
     return cacheFailure();
   }
@@ -367,6 +390,7 @@ class _$CacheFailure implements CacheFailure {
     TResult Function()? $default, {
     TResult Function()? serverFailure,
     TResult Function()? cacheFailure,
+    TResult Function()? inputFailure,
   }) {
     return cacheFailure?.call();
   }
@@ -377,6 +401,7 @@ class _$CacheFailure implements CacheFailure {
     TResult Function()? $default, {
     TResult Function()? serverFailure,
     TResult Function()? cacheFailure,
+    TResult Function()? inputFailure,
     required TResult orElse(),
   }) {
     if (cacheFailure != null) {
@@ -391,6 +416,7 @@ class _$CacheFailure implements CacheFailure {
     TResult Function(_Failure value) $default, {
     required TResult Function(ServerFailure value) serverFailure,
     required TResult Function(CacheFailure value) cacheFailure,
+    required TResult Function(InvalidInputFailure value) inputFailure,
   }) {
     return cacheFailure(this);
   }
@@ -401,6 +427,7 @@ class _$CacheFailure implements CacheFailure {
     TResult Function(_Failure value)? $default, {
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(CacheFailure value)? cacheFailure,
+    TResult Function(InvalidInputFailure value)? inputFailure,
   }) {
     return cacheFailure?.call(this);
   }
@@ -411,6 +438,7 @@ class _$CacheFailure implements CacheFailure {
     TResult Function(_Failure value)? $default, {
     TResult Function(ServerFailure value)? serverFailure,
     TResult Function(CacheFailure value)? cacheFailure,
+    TResult Function(InvalidInputFailure value)? inputFailure,
     required TResult orElse(),
   }) {
     if (cacheFailure != null) {
@@ -422,4 +450,121 @@ class _$CacheFailure implements CacheFailure {
 
 abstract class CacheFailure implements Failure {
   factory CacheFailure() = _$CacheFailure;
+}
+
+/// @nodoc
+abstract class $InvalidInputFailureCopyWith<$Res> {
+  factory $InvalidInputFailureCopyWith(
+          InvalidInputFailure value, $Res Function(InvalidInputFailure) then) =
+      _$InvalidInputFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$InvalidInputFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res>
+    implements $InvalidInputFailureCopyWith<$Res> {
+  _$InvalidInputFailureCopyWithImpl(
+      InvalidInputFailure _value, $Res Function(InvalidInputFailure) _then)
+      : super(_value, (v) => _then(v as InvalidInputFailure));
+
+  @override
+  InvalidInputFailure get _value => super._value as InvalidInputFailure;
+}
+
+/// @nodoc
+
+class _$InvalidInputFailure implements InvalidInputFailure {
+  _$InvalidInputFailure();
+
+  @override
+  String toString() {
+    return 'Failure.inputFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is InvalidInputFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() serverFailure,
+    required TResult Function() cacheFailure,
+    required TResult Function() inputFailure,
+  }) {
+    return inputFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? serverFailure,
+    TResult Function()? cacheFailure,
+    TResult Function()? inputFailure,
+  }) {
+    return inputFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? serverFailure,
+    TResult Function()? cacheFailure,
+    TResult Function()? inputFailure,
+    required TResult orElse(),
+  }) {
+    if (inputFailure != null) {
+      return inputFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Failure value) $default, {
+    required TResult Function(ServerFailure value) serverFailure,
+    required TResult Function(CacheFailure value) cacheFailure,
+    required TResult Function(InvalidInputFailure value) inputFailure,
+  }) {
+    return inputFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult Function(_Failure value)? $default, {
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(CacheFailure value)? cacheFailure,
+    TResult Function(InvalidInputFailure value)? inputFailure,
+  }) {
+    return inputFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Failure value)? $default, {
+    TResult Function(ServerFailure value)? serverFailure,
+    TResult Function(CacheFailure value)? cacheFailure,
+    TResult Function(InvalidInputFailure value)? inputFailure,
+    required TResult orElse(),
+  }) {
+    if (inputFailure != null) {
+      return inputFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InvalidInputFailure implements Failure {
+  factory InvalidInputFailure() = _$InvalidInputFailure;
 }
