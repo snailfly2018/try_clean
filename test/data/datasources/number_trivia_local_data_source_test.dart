@@ -12,12 +12,12 @@ import 'number_trivia_local_data_source_test.mocks.dart';
 
 @GenerateMocks([SharedPreferences])
 void main() {
-  late NumberTriviaRemoteDataSourceImpl dataSource;
+  late NumberTriviaLocalDataSourceImpl dataSource;
   late MockSharedPreferences mockSharedPreferences;
 
   setUp(() {
     mockSharedPreferences = MockSharedPreferences();
-    dataSource = NumberTriviaRemoteDataSourceImpl(
+    dataSource = NumberTriviaLocalDataSourceImpl(
         sharedPreferences: mockSharedPreferences);
   });
 
