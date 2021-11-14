@@ -1,5 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:try_clean/core/error/failure.dart';
+import 'package:try_clean/core/usecases/usecase.dart';
 import 'package:try_clean/core/util/input_converter.dart';
+import 'package:try_clean/domain/entities/numbertrivia.dart';
 
 import 'package:try_clean/domain/usecases/get_concrete_number_trivia.dart';
 import 'package:try_clean/domain/usecases/get_random_number_trivia.dart';
@@ -36,8 +40,41 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
           // Although the "success case" doesn't interest us with the current test,
           // we still have to handle it somehow.
           (integer) async* {
-        yield EmptyState();
+        yield LoadingState();
+        final failureOrTrivia =
+            await getConcreteNumberTrivia(Params(number: integer));
+        yield* _eitherLoadedOrErrorState(failureOrTrivia);
       });
+    } else if (event is GetRandomNumberEvent) {
+      yield LoadingState();
+      final failureOrTrivia = await getRandomNumberTrivia(NoParams());
+      yield* _eitherLoadedOrErrorState(failureOrTrivia);
     }
   }
+
+  Stream<NumberTriviaState> _eitherLoadedOrErrorState(
+    Either<Failure, NumberTrivia> failureOrTrivia,
+  ) async* {
+    yield failureOrTrivia.fold(
+      (failure) => ErrorState(
+          message: failure.when(
+        () => 'null',
+        serverFailure: () => SERVER_FAILURE_MESSAGE,
+        cacheFailure: () => CACHE_FAILURE_MESSAGE,
+        inputFailure: () => 'input failure',
+      )),
+      (trivia) => LoadedState(numberTrivia: trivia),
+    );
+  }
+
+  // String _mapFailureToMessage(Failure failure) {
+  //   switch (failure.runtimeType) {
+  //     case ServerFailure:
+  //       return SERVER_FAILURE_MESSAGE;
+  //     case CacheFailure:
+  //       return CACHE_FAILURE_MESSAGE;
+  //     default:
+  //       return 'Unexpected error';
+  //   }
+  // }
 }
