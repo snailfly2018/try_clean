@@ -32,9 +32,9 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
   Stream<NumberTriviaState> mapEventToState(NumberTriviaEvent event) async* {
     if (event is GetConcreteNumberEvent) {
       final inputEither =
-          inputConverter.stringToUnsignedInteger(event.numberString);
+          inputConverter.validateInt(event.numberString).run();
 
-      yield* inputEither.fold((failure) async* {
+      yield* inputEither.match((failure) async* {
         yield ErrorState(message: invalidInputFailureMessage);
       },
           // Although the "success case" doesn't interest us with the current test,
@@ -52,7 +52,7 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
     }
   }
 
-///fold处理返回的Either值
+  ///fold处理返回的Either值
   Stream<NumberTriviaState> _eitherLoadedOrErrorState(
     Either<Failure, NumberTrivia> failureOrTrivia,
   ) async* {

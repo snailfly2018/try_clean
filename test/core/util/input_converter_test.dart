@@ -10,7 +10,7 @@ void main() {
     inputConverter = InputConverter();
   });
 
-    group('stringToUnsignedInt', () {
+  group('stringToUnsignedInt', () {
     test(
       'should return an integer when the string represents an unsigned integer',
       () async {
@@ -24,6 +24,19 @@ void main() {
     );
 
     test(
+      'should return an integer when the string represents an unsigned integer IOEither version',
+      () async {
+        // arrange
+        const str = '123';
+        // act
+        final result = inputConverter.parseStringToInt(str).run();
+
+        expect(result, const Right(123));
+        // assert
+      },
+    );
+
+    test(
       'should return a failure when the string is not an integer',
       () async {
         // arrange
@@ -31,6 +44,18 @@ void main() {
         // act
         final result = inputConverter.stringToUnsignedInteger(str);
         // assert
+        expect(result, Left(InvalidInputFailure()));
+      },
+    );
+
+    test(
+      'should return a failure when the string is not an integer IOEither version',
+      () async {
+        // arrange
+        const str = 'abc';
+        // act
+        final result = inputConverter.parseStringToInt(str).run();
+
         expect(result, Left(InvalidInputFailure()));
       },
     );
