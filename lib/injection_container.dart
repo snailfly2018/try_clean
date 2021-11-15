@@ -40,7 +40,7 @@ Future<void> init() async {
     ),
   );
 
-    // Data sources
+  // Data sources
   sl.registerLazySingleton<NumberTriviaRemoteDataSource>(
     () => NumberTriviaRemoteDataSourceImpl(client: sl()),
   );
@@ -49,14 +49,35 @@ Future<void> init() async {
     () => NumberTriviaLocalDataSourceImpl(sharedPreferences: sl()),
   );
 
-    // Core
+  // Core
   sl.registerLazySingleton(() => InputConverter());
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
-  
-    // External
+
+  // External
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
+
   sl.registerLazySingleton(() => http.Client());
 
   sl.registerLazySingleton(() => InternetConnectionChecker());
+
+  // sl.registerSingletonAsync<RestService>(() async {
+  //   final r = RestService();
+  //   await r.init();
+  //   return r;
+  // });
+
+  // sl.registerSingletonAsync<SharedPreferences>(() async {
+  //   final sharedPreferences = await SharedPreferences.getInstance();
+  //   return sharedPreferences;
+  // });
+}
+
+class RestService {
+  Future<RestService> init() async {
+    // do your async initialisation...
+    // simulating it with a Delay here
+    await Future.delayed(const Duration(seconds: 2));
+    return this;
+  }
 }

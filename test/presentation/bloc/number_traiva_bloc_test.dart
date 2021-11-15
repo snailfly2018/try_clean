@@ -73,7 +73,7 @@ void main() {
         final expected = [
           // The initial state is always emitted first
           // EmptyState(),
-          ErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+          ErrorState(message: invalidInputFailureMessage),
         ];
         expectLater(bloc.stream, emitsInOrder(expected));
         // act
@@ -126,7 +126,7 @@ void main() {
         final expected = [
           // Empty(),
           LoadingState(),
-          ErrorState(message: SERVER_FAILURE_MESSAGE),
+          ErrorState(message: serverFailureMessage),
         ];
         expectLater(bloc.stream, emitsInOrder(expected));
         // act
@@ -145,7 +145,7 @@ void main() {
         final expected = [
           // EmptyState(),
           LoadingState(),
-          ErrorState(message: CACHE_FAILURE_MESSAGE),
+          ErrorState(message: cacheFailureMessage),
         ];
         expectLater(bloc.stream, emitsInOrder(expected));
         // act
@@ -199,7 +199,7 @@ void main() {
         final expected = [
           // Empty(),
           LoadingState(),
-          ErrorState(message: SERVER_FAILURE_MESSAGE),
+          ErrorState(message: serverFailureMessage),
         ];
         expectLater(bloc.stream, emitsInOrder(expected));
         // act
@@ -217,7 +217,7 @@ void main() {
         final expected = [
           // Empty(),
           LoadingState(),
-          ErrorState(message: CACHE_FAILURE_MESSAGE),
+          ErrorState(message: cacheFailureMessage),
         ];
         expectLater(bloc.stream, emitsInOrder(expected));
         // act

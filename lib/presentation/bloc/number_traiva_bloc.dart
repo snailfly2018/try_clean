@@ -9,9 +9,9 @@ import 'package:try_clean/domain/usecases/get_random_number_trivia.dart';
 import 'package:try_clean/presentation/bloc/numbertriviaevent.dart';
 import 'package:try_clean/presentation/bloc/numbertriviastate.dart';
 
-const String SERVER_FAILURE_MESSAGE = 'Server Failure';
-const String CACHE_FAILURE_MESSAGE = 'Cache Failure';
-const String INVALID_INPUT_FAILURE_MESSAGE =
+const String serverFailureMessage = 'Server Failure';
+const String cacheFailureMessage = 'Cache Failure';
+const String invalidInputFailureMessage =
     'Invalid Input - The number must be a positive integer or zero.';
 
 class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
@@ -26,6 +26,7 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
   final InputConverter inputConverter;
 
   // NumberTriviaState get initialState => EmptyState();
+  ///Either的数据在这里都会fold开了，在state里没有Either类型的数据了
 
   @override
   Stream<NumberTriviaState> mapEventToState(NumberTriviaEvent event) async* {
@@ -34,7 +35,7 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
           inputConverter.stringToUnsignedInteger(event.numberString);
 
       yield* inputEither.fold((failure) async* {
-        yield ErrorState(message: INVALID_INPUT_FAILURE_MESSAGE);
+        yield ErrorState(message: invalidInputFailureMessage);
       },
           // Although the "success case" doesn't interest us with the current test,
           // we still have to handle it somehow.
@@ -59,8 +60,8 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
       (failure) => ErrorState(
           message: failure.when(
         () => 'null',
-        serverFailure: () => SERVER_FAILURE_MESSAGE,
-        cacheFailure: () => CACHE_FAILURE_MESSAGE,
+        serverFailure: () => serverFailureMessage,
+        cacheFailure: () => cacheFailureMessage,
         inputFailure: () => 'input failure',
       )),
       (trivia) => LoadedState(numberTrivia: trivia),
