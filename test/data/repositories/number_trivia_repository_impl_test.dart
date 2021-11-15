@@ -71,6 +71,18 @@ void main() {
       verify(mockNetworkInfo.isConnected);
     });
 
+        test('should check if the device is online as random trivia call', () {
+      //arrange
+      when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+
+      when(mockRemoteDataSource.getRandomNumberTrivia())
+          .thenAnswer((_) async => tNumberTriviaModel);
+      // act
+      repository.getRandomNumberTrivia();
+      // assert
+      verify(mockNetworkInfo.isConnected);
+    });
+
     runTestsOnline(() {
       test(
         'should return remote data when the call to remote data source is successful',

@@ -7,7 +7,6 @@ import 'package:mockito/mockito.dart';
 import 'package:try_clean/core/error/exception.dart';
 import 'package:try_clean/data/datasources/number_trivia_remote_data_source.dart';
 import 'package:try_clean/domain/entities/numbertrivia.dart';
-// import 'package:try_clean/data/datasources/number_trivia_local_data_source.dart';
 import '../../fixtures/fixture_reader.dart';
 import 'number_trivia_remote_data_source_test.mocks.dart' as mock;
 

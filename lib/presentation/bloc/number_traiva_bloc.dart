@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:try_clean/core/error/failure.dart';
-import 'package:try_clean/core/usecases/usecase.dart';
 import 'package:try_clean/core/util/input_converter.dart';
 import 'package:try_clean/domain/entities/numbertrivia.dart';
 
@@ -52,6 +51,7 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
     }
   }
 
+///fold处理返回的Either值
   Stream<NumberTriviaState> _eitherLoadedOrErrorState(
     Either<Failure, NumberTrivia> failureOrTrivia,
   ) async* {

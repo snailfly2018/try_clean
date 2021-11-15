@@ -26,16 +26,16 @@ class NumberTriviaPage extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: Column(
               children: <Widget>[
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Top half
                 BlocBuilder<NumberTriviaBloc, NumberTriviaState>(
                   builder: (context, state) {
                     if (state is EmptyState) {
-                      return MessageDisplay(
+                      return const MessageDisplay(
                         message: 'Start searching!',
                       );
                     } else if (state is LoadingState) {
-                      return LoadingWidget();
+                      return const LoadingWidget();
                     } else if (state is LoadedState) {
                       return TriviaDisplay(numberTrivia: state.numberTrivia);
                     } else if (state is ErrorState) {
@@ -47,9 +47,9 @@ class NumberTriviaPage extends StatelessWidget {
                     }
                   },
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 // Bottom half
-                TriviaControls()
+                const TriviaControls()
               ],
             ),
           ),

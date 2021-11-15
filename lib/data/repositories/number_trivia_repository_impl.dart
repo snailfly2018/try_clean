@@ -35,7 +35,7 @@ class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
       return remoteDataSource.getRandomNumberTrivia();
     });
   }
-
+///异常到错误的转化处
   Future<Either<Failure, NumberTrivia>> _getTrivia(
     _ConcreteOrRandomChooser getConcreteOrRandom,
   ) async {

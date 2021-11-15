@@ -3,7 +3,6 @@ import 'package:fpdart/src/either.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:try_clean/core/error/failure.dart';
-import 'package:try_clean/core/usecases/usecase.dart';
 import 'package:try_clean/core/util/input_converter.dart';
 import 'package:try_clean/domain/entities/numbertrivia.dart';
 import 'package:try_clean/domain/usecases/get_concrete_number_trivia.dart';
