@@ -56,7 +56,7 @@ void main() {
         // act
         final result = inputConverter.parseStringToInt(str).run();
 
-        expect(result, Left(InvalidInputFailure()));
+        expect(result, Left(InvalidInputFailure('can not parse as a int value')));
       },
     );
 

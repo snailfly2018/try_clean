@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -55,11 +56,13 @@ void main() {
         when(mockGetConcreteNumberTrivia(any))
             .thenAnswer((_) async => Right(tNumberTrivia));
 
+        when(mockInputConverter.validateInt(any)).thenReturn(IOEither.right(1));
+
         // act
         bloc.add(GetConcreteNumberEvent(tNumberString));
-        await untilCalled(mockInputConverter.stringToUnsignedInteger(any));
+        await untilCalled(mockInputConverter.validateInt(any));
         // assert
-        verify(mockInputConverter.stringToUnsignedInteger(tNumberString));
+        verify(mockInputConverter.validateInt(tNumberString));
       },
     );
 
@@ -69,11 +72,14 @@ void main() {
         // arrange
         when(mockInputConverter.stringToUnsignedInteger(any))
             .thenReturn(Left(InvalidInputFailure()));
+
+        when(mockInputConverter.validateInt(any)).thenReturn(IOEither.left(InvalidInputFailure()));
         // assert later
         final expected = [
           // The initial state is always emitted first
           // EmptyState(),
-          ErrorState(message: invalidInputFailureMessage),
+          
+          ErrorState(message: 'InvidInput'),
         ];
         expectLater(bloc.stream, emitsInOrder(expected));
         // act
@@ -88,11 +94,14 @@ void main() {
         setUpMockInputConverterSuccess();
         when(mockGetConcreteNumberTrivia(any))
             .thenAnswer((_) async => Right(tNumberTrivia));
+
+        when(mockInputConverter.validateInt(any)).thenReturn(IOEither.right(1));
         // act
         bloc.add(GetConcreteNumberEvent(tNumberString));
         await untilCalled(mockGetConcreteNumberTrivia(any));
         // assert
-        verify(mockGetConcreteNumberTrivia(const Params(number: tNumberParsed)));
+        verify(
+            mockGetConcreteNumberTrivia(const Params(number: tNumberParsed)));
       },
     );
 
@@ -101,6 +110,7 @@ void main() {
       () async {
         // arrange
         setUpMockInputConverterSuccess();
+        when(mockInputConverter.validateInt(any)).thenReturn(IOEither.right(1));
         when(mockGetConcreteNumberTrivia(any))
             .thenAnswer((_) async => Right(tNumberTrivia));
         // assert later
@@ -115,13 +125,14 @@ void main() {
       },
     );
 
-        test(
+    test(
       'should emit [Loading, Error] when getting data fails',
       () async {
         // arrange
         setUpMockInputConverterSuccess();
         when(mockGetConcreteNumberTrivia(any))
             .thenAnswer((_) async => Left(ServerFailure()));
+          when(mockInputConverter.validateInt(any)).thenReturn(IOEither.right(1));
         // assert later
         final expected = [
           // Empty(),
@@ -141,6 +152,7 @@ void main() {
         setUpMockInputConverterSuccess();
         when(mockGetConcreteNumberTrivia(any))
             .thenAnswer((_) async => Left(CacheFailure()));
+            when(mockInputConverter.validateInt(any)).thenReturn(IOEither.right(1));
         // assert later
         final expected = [
           // EmptyState(),
@@ -154,7 +166,7 @@ void main() {
     );
   });
 
-    group('GetTriviaForRandomNumber', () {
+  group('GetTriviaForRandomNumber', () {
     final tNumberTrivia = NumberTrivia(number: 1, text: 'test trivia');
 
     test(
