@@ -21,16 +21,22 @@ class _$FailureTearOff {
     return _Failure();
   }
 
-  ServerFailure serverFailure() {
-    return ServerFailure();
+  ServerFailure serverFailure([String errMsg = 'ServerFailure']) {
+    return ServerFailure(
+      errMsg,
+    );
   }
 
-  CacheFailure cacheFailure() {
-    return CacheFailure();
+  CacheFailure cacheFailure([String errMsg = 'CacheFailure']) {
+    return CacheFailure(
+      errMsg,
+    );
   }
 
-  InvalidInputFailure inputFailure() {
-    return InvalidInputFailure();
+  InvalidInputFailure inputFailure([String errMsg = 'InvidInput']) {
+    return InvalidInputFailure(
+      errMsg,
+    );
   }
 }
 
@@ -42,25 +48,25 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function() serverFailure,
-    required TResult Function() cacheFailure,
-    required TResult Function() inputFailure,
+    required TResult Function(String errMsg) serverFailure,
+    required TResult Function(String errMsg) cacheFailure,
+    required TResult Function(String errMsg) inputFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? serverFailure,
-    TResult Function()? cacheFailure,
-    TResult Function()? inputFailure,
+    TResult Function(String errMsg)? serverFailure,
+    TResult Function(String errMsg)? cacheFailure,
+    TResult Function(String errMsg)? inputFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? serverFailure,
-    TResult Function()? cacheFailure,
-    TResult Function()? inputFailure,
+    TResult Function(String errMsg)? serverFailure,
+    TResult Function(String errMsg)? cacheFailure,
+    TResult Function(String errMsg)? inputFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -145,9 +151,9 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function() serverFailure,
-    required TResult Function() cacheFailure,
-    required TResult Function() inputFailure,
+    required TResult Function(String errMsg) serverFailure,
+    required TResult Function(String errMsg) cacheFailure,
+    required TResult Function(String errMsg) inputFailure,
   }) {
     return $default();
   }
@@ -156,9 +162,9 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? serverFailure,
-    TResult Function()? cacheFailure,
-    TResult Function()? inputFailure,
+    TResult Function(String errMsg)? serverFailure,
+    TResult Function(String errMsg)? cacheFailure,
+    TResult Function(String errMsg)? inputFailure,
   }) {
     return $default?.call();
   }
@@ -167,9 +173,9 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? serverFailure,
-    TResult Function()? cacheFailure,
-    TResult Function()? inputFailure,
+    TResult Function(String errMsg)? serverFailure,
+    TResult Function(String errMsg)? cacheFailure,
+    TResult Function(String errMsg)? inputFailure,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -225,6 +231,7 @@ abstract class $ServerFailureCopyWith<$Res> {
   factory $ServerFailureCopyWith(
           ServerFailure value, $Res Function(ServerFailure) then) =
       _$ServerFailureCopyWithImpl<$Res>;
+  $Res call({String errMsg});
 }
 
 /// @nodoc
@@ -236,60 +243,83 @@ class _$ServerFailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
 
   @override
   ServerFailure get _value => super._value as ServerFailure;
+
+  @override
+  $Res call({
+    Object? errMsg = freezed,
+  }) {
+    return _then(ServerFailure(
+      errMsg == freezed
+          ? _value.errMsg
+          : errMsg // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ServerFailure implements ServerFailure {
-  _$ServerFailure();
+  _$ServerFailure([this.errMsg = 'ServerFailure']);
+
+  @JsonKey(defaultValue: 'ServerFailure')
+  @override
+  final String errMsg;
 
   @override
   String toString() {
-    return 'Failure.serverFailure()';
+    return 'Failure.serverFailure(errMsg: $errMsg)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is ServerFailure);
+        (other.runtimeType == runtimeType &&
+            other is ServerFailure &&
+            (identical(other.errMsg, errMsg) || other.errMsg == errMsg));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, errMsg);
+
+  @JsonKey(ignore: true)
+  @override
+  $ServerFailureCopyWith<ServerFailure> get copyWith =>
+      _$ServerFailureCopyWithImpl<ServerFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function() serverFailure,
-    required TResult Function() cacheFailure,
-    required TResult Function() inputFailure,
+    required TResult Function(String errMsg) serverFailure,
+    required TResult Function(String errMsg) cacheFailure,
+    required TResult Function(String errMsg) inputFailure,
   }) {
-    return serverFailure();
+    return serverFailure(errMsg);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? serverFailure,
-    TResult Function()? cacheFailure,
-    TResult Function()? inputFailure,
+    TResult Function(String errMsg)? serverFailure,
+    TResult Function(String errMsg)? cacheFailure,
+    TResult Function(String errMsg)? inputFailure,
   }) {
-    return serverFailure?.call();
+    return serverFailure?.call(errMsg);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? serverFailure,
-    TResult Function()? cacheFailure,
-    TResult Function()? inputFailure,
+    TResult Function(String errMsg)? serverFailure,
+    TResult Function(String errMsg)? cacheFailure,
+    TResult Function(String errMsg)? inputFailure,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
-      return serverFailure();
+      return serverFailure(errMsg);
     }
     return orElse();
   }
@@ -333,7 +363,12 @@ class _$ServerFailure implements ServerFailure {
 }
 
 abstract class ServerFailure implements Failure {
-  factory ServerFailure() = _$ServerFailure;
+  factory ServerFailure([String errMsg]) = _$ServerFailure;
+
+  String get errMsg;
+  @JsonKey(ignore: true)
+  $ServerFailureCopyWith<ServerFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -341,6 +376,7 @@ abstract class $CacheFailureCopyWith<$Res> {
   factory $CacheFailureCopyWith(
           CacheFailure value, $Res Function(CacheFailure) then) =
       _$CacheFailureCopyWithImpl<$Res>;
+  $Res call({String errMsg});
 }
 
 /// @nodoc
@@ -352,60 +388,83 @@ class _$CacheFailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
 
   @override
   CacheFailure get _value => super._value as CacheFailure;
+
+  @override
+  $Res call({
+    Object? errMsg = freezed,
+  }) {
+    return _then(CacheFailure(
+      errMsg == freezed
+          ? _value.errMsg
+          : errMsg // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$CacheFailure implements CacheFailure {
-  _$CacheFailure();
+  _$CacheFailure([this.errMsg = 'CacheFailure']);
+
+  @JsonKey(defaultValue: 'CacheFailure')
+  @override
+  final String errMsg;
 
   @override
   String toString() {
-    return 'Failure.cacheFailure()';
+    return 'Failure.cacheFailure(errMsg: $errMsg)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is CacheFailure);
+        (other.runtimeType == runtimeType &&
+            other is CacheFailure &&
+            (identical(other.errMsg, errMsg) || other.errMsg == errMsg));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, errMsg);
+
+  @JsonKey(ignore: true)
+  @override
+  $CacheFailureCopyWith<CacheFailure> get copyWith =>
+      _$CacheFailureCopyWithImpl<CacheFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function() serverFailure,
-    required TResult Function() cacheFailure,
-    required TResult Function() inputFailure,
+    required TResult Function(String errMsg) serverFailure,
+    required TResult Function(String errMsg) cacheFailure,
+    required TResult Function(String errMsg) inputFailure,
   }) {
-    return cacheFailure();
+    return cacheFailure(errMsg);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? serverFailure,
-    TResult Function()? cacheFailure,
-    TResult Function()? inputFailure,
+    TResult Function(String errMsg)? serverFailure,
+    TResult Function(String errMsg)? cacheFailure,
+    TResult Function(String errMsg)? inputFailure,
   }) {
-    return cacheFailure?.call();
+    return cacheFailure?.call(errMsg);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? serverFailure,
-    TResult Function()? cacheFailure,
-    TResult Function()? inputFailure,
+    TResult Function(String errMsg)? serverFailure,
+    TResult Function(String errMsg)? cacheFailure,
+    TResult Function(String errMsg)? inputFailure,
     required TResult orElse(),
   }) {
     if (cacheFailure != null) {
-      return cacheFailure();
+      return cacheFailure(errMsg);
     }
     return orElse();
   }
@@ -449,7 +508,12 @@ class _$CacheFailure implements CacheFailure {
 }
 
 abstract class CacheFailure implements Failure {
-  factory CacheFailure() = _$CacheFailure;
+  factory CacheFailure([String errMsg]) = _$CacheFailure;
+
+  String get errMsg;
+  @JsonKey(ignore: true)
+  $CacheFailureCopyWith<CacheFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -457,6 +521,7 @@ abstract class $InvalidInputFailureCopyWith<$Res> {
   factory $InvalidInputFailureCopyWith(
           InvalidInputFailure value, $Res Function(InvalidInputFailure) then) =
       _$InvalidInputFailureCopyWithImpl<$Res>;
+  $Res call({String errMsg});
 }
 
 /// @nodoc
@@ -469,60 +534,83 @@ class _$InvalidInputFailureCopyWithImpl<$Res>
 
   @override
   InvalidInputFailure get _value => super._value as InvalidInputFailure;
+
+  @override
+  $Res call({
+    Object? errMsg = freezed,
+  }) {
+    return _then(InvalidInputFailure(
+      errMsg == freezed
+          ? _value.errMsg
+          : errMsg // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$InvalidInputFailure implements InvalidInputFailure {
-  _$InvalidInputFailure();
+  _$InvalidInputFailure([this.errMsg = 'InvidInput']);
+
+  @JsonKey(defaultValue: 'InvidInput')
+  @override
+  final String errMsg;
 
   @override
   String toString() {
-    return 'Failure.inputFailure()';
+    return 'Failure.inputFailure(errMsg: $errMsg)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is InvalidInputFailure);
+        (other.runtimeType == runtimeType &&
+            other is InvalidInputFailure &&
+            (identical(other.errMsg, errMsg) || other.errMsg == errMsg));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, errMsg);
+
+  @JsonKey(ignore: true)
+  @override
+  $InvalidInputFailureCopyWith<InvalidInputFailure> get copyWith =>
+      _$InvalidInputFailureCopyWithImpl<InvalidInputFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function() serverFailure,
-    required TResult Function() cacheFailure,
-    required TResult Function() inputFailure,
+    required TResult Function(String errMsg) serverFailure,
+    required TResult Function(String errMsg) cacheFailure,
+    required TResult Function(String errMsg) inputFailure,
   }) {
-    return inputFailure();
+    return inputFailure(errMsg);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? serverFailure,
-    TResult Function()? cacheFailure,
-    TResult Function()? inputFailure,
+    TResult Function(String errMsg)? serverFailure,
+    TResult Function(String errMsg)? cacheFailure,
+    TResult Function(String errMsg)? inputFailure,
   }) {
-    return inputFailure?.call();
+    return inputFailure?.call(errMsg);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function()? serverFailure,
-    TResult Function()? cacheFailure,
-    TResult Function()? inputFailure,
+    TResult Function(String errMsg)? serverFailure,
+    TResult Function(String errMsg)? cacheFailure,
+    TResult Function(String errMsg)? inputFailure,
     required TResult orElse(),
   }) {
     if (inputFailure != null) {
-      return inputFailure();
+      return inputFailure(errMsg);
     }
     return orElse();
   }
@@ -566,5 +654,10 @@ class _$InvalidInputFailure implements InvalidInputFailure {
 }
 
 abstract class InvalidInputFailure implements Failure {
-  factory InvalidInputFailure() = _$InvalidInputFailure;
+  factory InvalidInputFailure([String errMsg]) = _$InvalidInputFailure;
+
+  String get errMsg;
+  @JsonKey(ignore: true)
+  $InvalidInputFailureCopyWith<InvalidInputFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -29,6 +29,8 @@ class _FakeNumberTriviaRepository_0 extends _i1.Fake
 
 class _FakeEither_1<L, R> extends _i1.Fake implements _i3.Either<L, R> {}
 
+class _FakeIOEither_2<L, R> extends _i1.Fake implements _i3.IOEither<L, R> {}
+
 /// A class which mocks [GetConcreteNumberTrivia].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -92,6 +94,16 @@ class MockInputConverter extends _i1.Mock implements _i9.InputConverter {
       (super.noSuchMethod(Invocation.method(#stringToUnsignedInteger, [str]),
               returnValue: _FakeEither_1<_i6.Failure, int>())
           as _i3.Either<_i6.Failure, int>);
+  @override
+  _i3.IOEither<_i6.Failure, int> parseStringToInt(String? str) =>
+      (super.noSuchMethod(Invocation.method(#parseStringToInt, [str]),
+              returnValue: _FakeIOEither_2<_i6.Failure, int>())
+          as _i3.IOEither<_i6.Failure, int>);
+  @override
+  _i3.IOEither<_i6.Failure, int> validateInt(String? str) =>
+      (super.noSuchMethod(Invocation.method(#validateInt, [str]),
+              returnValue: _FakeIOEither_2<_i6.Failure, int>())
+          as _i3.IOEither<_i6.Failure, int>);
   @override
   String toString() => super.toString();
 }

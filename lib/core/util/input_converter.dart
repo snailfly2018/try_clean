@@ -15,12 +15,12 @@ class InputConverter {
 
   IOEither<Failure, int> parseStringToInt(String str) => IOEither.tryCatch(
         () => int.parse(str),
-        (_, __) => InvalidInputFailure(),
+        (_, __) => InvalidInputFailure('can not parse as a int value'),
       );
 
 ///用flatmap链接上一个函数继续判断
   IOEither<Failure, int> validateInt(String str) =>
       parseStringToInt(str).flatMap(
-        (id) => IOEither.fromPredicate(id, (a) => a > 0, (a) => InvalidInputFailure()),
+        (id) => IOEither.fromPredicate(id, (a) => a > 0, (a) => InvalidInputFailure('must be large than zero')),
       );
 }

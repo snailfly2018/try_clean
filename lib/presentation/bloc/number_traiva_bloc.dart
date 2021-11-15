@@ -31,11 +31,17 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
   @override
   Stream<NumberTriviaState> mapEventToState(NumberTriviaEvent event) async* {
     if (event is GetConcreteNumberEvent) {
-      final inputEither =
-          inputConverter.validateInt(event.numberString).run();
+      final inputEither = inputConverter.validateInt(event.numberString).run();
 
       yield* inputEither.match((failure) async* {
-        yield ErrorState(message: invalidInputFailureMessage);
+        // final errmsg = failure.maybeWhen(inputFailure: (e) => null, orElse: "orElse");
+        final errmsg  = failure.when(
+          () => 'null',
+          serverFailure: (_) => serverFailureMessage,
+          cacheFailure: (_) => cacheFailureMessage,
+          inputFailure: (error) => error,
+        );
+        yield ErrorState(message: errmsg);
       },
           // Although the "success case" doesn't interest us with the current test,
           // we still have to handle it somehow.
@@ -60,9 +66,9 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
       (failure) => ErrorState(
           message: failure.when(
         () => 'null',
-        serverFailure: () => serverFailureMessage,
-        cacheFailure: () => cacheFailureMessage,
-        inputFailure: () => 'input failure',
+        serverFailure: (_) => serverFailureMessage,
+        cacheFailure: (_) => cacheFailureMessage,
+        inputFailure: (error) => error,
       )),
       (trivia) => LoadedState(numberTrivia: trivia),
     );
