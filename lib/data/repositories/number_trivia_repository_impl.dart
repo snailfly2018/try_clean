@@ -35,25 +35,47 @@ class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
       return remoteDataSource.getRandomNumberTrivia();
     });
   }
-///异常到错误的转化处
+
+  ///异常到错误的转化处
   Future<Either<Failure, NumberTrivia>> _getTrivia(
     _ConcreteOrRandomChooser getConcreteOrRandom,
   ) async {
     if (await networkInfo.isConnected) {
-      try {
-        final remoteTrivia = await getConcreteOrRandom();
-        localDataSource.cacheNumberTrivia(remoteTrivia);
-        return Right(remoteTrivia);
-      } on ServerException {
-        return Left(ServerFailure());
-      }
+      // try {
+      //   final remoteTrivia = await getConcreteOrRandom();
+      //   localDataSource.cacheNumberTrivia(remoteTrivia);
+      //   return Right(remoteTrivia);
+      // } on ServerException {
+      //   return Left(ServerFailure());
+      // }
+      return getNumberTriviaTask(getConcreteOrRandom).run();
     } else {
-      try {
-        final localTrivia = await localDataSource.getLastNumberTrivia();
-        return Right(localTrivia);
-      } on CacheException {
-        return Left(CacheFailure());
-      }
+      return getLastNumberTrivia().run();
     }
+    // {
+    //   try {
+    //     final localTrivia = await localDataSource.getLastNumberTrivia();
+    //     return Right(localTrivia);
+    //   } on CacheException {
+    //     return Left(CacheFailure());
+    //   }
+    // }
   }
+
+  TaskEither<Failure, NumberTrivia> getNumberTriviaTask(
+          _ConcreteOrRandomChooser getConcreteOrRandom) =>
+      TaskEither.tryCatch(
+        () async {
+          final remoteTrivia = await getConcreteOrRandom();
+          localDataSource.cacheNumberTrivia(remoteTrivia);
+          return remoteTrivia;
+        },
+        (_, __) => ServerFailure(),
+      );
+
+  TaskEither<Failure, NumberTrivia> getLastNumberTrivia() =>
+      TaskEither.tryCatch(
+        () async => await localDataSource.getLastNumberTrivia(),
+        (_, __) => CacheFailure(),
+      );
 }
