@@ -1,5 +1,4 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:try_clean/core/error/exception.dart';
 import 'package:try_clean/core/network/network_info.dart';
 import 'package:try_clean/data/datasources/number_trivia_local_data_source.dart';
 import 'package:try_clean/data/datasources/number_trivia_remote_data_source.dart';
